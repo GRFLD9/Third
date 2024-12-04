@@ -1,7 +1,7 @@
 import sys
 from random import randint
 
-from PyQt6 import uic
+from Ui import Ui_MainWindow
 from PyQt6.QtGui import QPainter, QColor
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
@@ -9,12 +9,13 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 class My_Circle(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('Ui.ui', self)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
         self.do_paint = False
         self.initUI()
 
     def initUI(self):
-        self.btn.clicked.connect(self.click)
+        self.ui.btn.clicked.connect(self.click)
 
     def paintEvent(self, event):
         if self.do_paint:
@@ -29,8 +30,9 @@ class My_Circle(QMainWindow):
         self.update()
 
     def draw(self, qp):
+        r, g, b = randint(0, 255), randint(0, 255), randint(0, 255)
         d = randint(1, 200)
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(r, g, b))
         qp.drawEllipse(400, 150, d, d)
 
 
