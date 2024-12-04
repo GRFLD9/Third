@@ -7,15 +7,14 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 
 
 class My_Circle(QMainWindow):
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
         uic.loadUi('Ui.ui', self)
         self.do_paint = False
         self.initUI()
 
     def initUI(self):
         self.btn.clicked.connect(self.click)
-
 
     def paintEvent(self, event):
         if self.do_paint:
@@ -35,7 +34,7 @@ class My_Circle(QMainWindow):
         qp.drawEllipse(400, 150, d, d)
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = My_Circle()
     ex.show()
